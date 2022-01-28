@@ -43,14 +43,22 @@ function Main(props) {
         })
    }
 
-   const addNotes = async function (project, id) {
-       await fetch(URL + id, {
-           method: 'PUT',
+   const addNotes = async function (note, id) {
+    console.log(JSON.stringify(note), id)   
+    await fetch(URL + id + '/notes', {
+           method: 'POST',
            headers: {
                'Content-Type': 'Application/json'
            },
-           body: JSON.stringify(project)
+           body: JSON.stringify(note)
        })
+   console.log(JSON.stringify(note));
+    }
+
+   const deleteNotes = async function (id, noteID) {
+        await fetch(URL + id + '/notes/' + noteID, {
+        method: 'DELETE'
+    })
    }
 
     useEffect(() => {
@@ -101,6 +109,7 @@ function Main(props) {
                         {...rp} 
                         projects={projects}
                         addNotes={addNotes}
+                        deleteNotes={deleteNotes}
                     />
                     :
                     <Home />

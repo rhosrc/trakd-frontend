@@ -15,6 +15,7 @@ function Index (props) {
         {
             props.projects.map(function (project){
                 const removeProject = function (event) {
+                    event.preventDefault();
                     props.deleteProjects(project._id);
                     window.location.reload(true);
                 } 
