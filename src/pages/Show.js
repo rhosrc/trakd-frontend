@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
+
  
 
 function Show (props) {
@@ -22,13 +23,13 @@ function Show (props) {
         setNewNote(''); 
     }
 
-    const handleDeleteNote = function (event) {
-        console.log(event)
-        // event.preventDefault();
-        // props.deleteNotes(result._id, result.notes.)
-        // window.location.reload(true);
-        // console.log(event);
-    }
+
+    const handleDeleteNote = async function (noteId) {
+        await fetch('http://localhost:3001/notes/' + noteId, {
+            method: 'DELETE'
+        })
+    props.getProjects();
+   }
 
 
     
@@ -37,6 +38,9 @@ function Show (props) {
 
     return (
      <div>
+        {
+            console.log(result.notes)
+        }
         <h1>Project Name: {result.name}</h1>
         <Link to={`/projects/${result._id}/edit`}>
         <p>Edit this project</p>
@@ -46,14 +50,14 @@ function Show (props) {
             result.notes.map(function (note) {
                 return (
                     <div key={note._id}>
-                        <h1>{note.content}</h1>
-                        <button onClick={handleDeleteNote}>Remove note</button>
+                        <p>{note.content}</p>
+                        <button onClick={() => handleDeleteNote(note._id)}>Remove note</button>
                     </div>
                 )
             })
         }
         <form onSubmit={handleSubmitNote}>
-        <label>Note</label><textarea value={newNote} onChange={handleChange}></textarea>
+        <label>Note</label><input type="text" value={newNote} onChange={handleChange}></input>
         <input type="submit" value="Add Note" />
         </form>
      </div>   

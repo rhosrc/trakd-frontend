@@ -9,7 +9,8 @@ import Edit from '../pages/Edit'
 function Main(props) {
     const [projects, setProjects] = useState([]);
 
-    const URL = 'http://localhost:3001/projects/';
+    // const URL = 'http://localhost:3001/projects/';
+    const URL = 'https://trakd-backend.herokuapp.com/projects/';
 
     const getProjects = async function () {
         const response = await fetch(URL);
@@ -55,11 +56,10 @@ function Main(props) {
    console.log(JSON.stringify(note));
     }
 
-   const deleteNotes = async function (id, noteID) {
-        await fetch(URL + id + '/notes/' + noteID, {
-        method: 'DELETE'
-    })
-   }
+   
+
+   
+
 
     useEffect(() => {
         getProjects();
@@ -84,6 +84,7 @@ function Main(props) {
                         {...props} 
                         {...rp} 
                         createProjects={createProjects}
+                        getProjects={getProjects}
                     />
                     :
                     <Home />
@@ -109,7 +110,7 @@ function Main(props) {
                         {...rp} 
                         projects={projects}
                         addNotes={addNotes}
-                        deleteNotes={deleteNotes}
+                        getProjects={getProjects}
                     />
                     :
                     <Home />

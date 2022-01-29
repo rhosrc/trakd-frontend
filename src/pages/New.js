@@ -8,9 +8,10 @@ function New (props) {
         charge: '',
         paid: 'no',
         due: '',
-        photos: '',
-        status: 'processing'
+        status: 'processing',
     })
+    
+
 
 
     function handleSubmit (event) {
@@ -23,10 +24,11 @@ function New (props) {
             charge: '',
             paid: 'yes',
             due: '',
-            photos: '',
-            status: 'processing'
+            status: 'processing',
         })
-        console.log(newProject);       
+        console.log(newProject);
+        props.getProjects();
+        props.history.push('/');       
     }
 
     function handleChange (event) {
@@ -80,7 +82,7 @@ function New (props) {
             </label><br />
             <label>
                 Upload concept images here!
-                <input type="file" valuename="coverImage" /><br /> 
+                <input type="file" name="conceptImage" /><br /> 
             </label>
             <input type="submit" value="Create Project" />
         </form>
