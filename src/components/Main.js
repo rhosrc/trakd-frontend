@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import Home from '../pages/Home';
 import Index from '../pages/Index';
@@ -8,62 +8,109 @@ import Edit from '../pages/Edit'
 
 function Main(props) {
     const [projects, setProjects] = useState([]);
+    const getProjectsRef = useRef();
 
-    // const URL = 'http://localhost:3001/projects/';
-    const URL = 'https://trakd-backend.herokuapp.com/projects/';
+    const URL = 'http://localhost:3001/projects/';
+    // const URL = 'https://trakd-backend.herokuapp.com/projects/';
 
     const getProjects = async function () {
-        const response = await fetch(URL);
+        if(!props.user) return;
+        const token = await props.user.getIdToken();
+
+        const response = await fetch(URL, {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        });
+
         const data = await response.json();
+
         setProjects(data);
     }
 
     const createProjects = async function (project) {
+        if(!props.user) return;
+        const token = await props.user.getIdToken();
+        // console.log(token);
         await fetch(URL, {
             method: 'POST',
             headers: {
-                'Content-Type': 'Application/json'
+                'Content-Type': 'Application/json',
+                'Authorization': 'Bearer ' + token
             }, 
             body: JSON.stringify(project)
         })
+        getProjects();
     }
 
     const deleteProjects = async function (id) {
+        if(!props.user) return;
+        const token = await props.user.getIdToken();
         await fetch(URL + id, {
-            method: 'DELETE'
+            method: 'DELETE',
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
         })
+        getProjects();
     }
 
     const updateProjects = async function (project, id) {
+        if(!props.user) return;
+        const token = await props.user.getIdToken();
         await fetch(URL + id, {
             method: 'PUT',
             headers: {
-                'Content-Type': 'Application/json'
+                'Content-Type': 'Application/json',
+                'Authorization': 'Bearer ' + token
             },
             body: JSON.stringify(project)
         })
+        getProjects();
    }
 
    const addNotes = async function (note, id) {
-    console.log(JSON.stringify(note), id)   
-    await fetch(URL + id + '/notes', {
+        if(!props.user) return;
+        const token = await props.user.getIdToken();
+        await fetch(URL + id + '/notes', {
            method: 'POST',
            headers: {
-               'Content-Type': 'Application/json'
+               'Content-Type': 'Application/json',
+               'Authorization': 'Bearer ' + token
            },
            body: JSON.stringify(note)
        })
-   console.log(JSON.stringify(note));
+   getProjects();
     }
 
-   
+    const deleteNotes = async function (noteId) {
+        if(!props.user) return;
+        const token = await props.user.getIdToken();
+        await fetch('http://localhost:3001/notes/' + noteId, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        })
+    getProjects();
+   }
 
-   
-
+    const handleLogout = function () {
+        setProjects([]);
+    }
 
     useEffect(() => {
-        getProjects();
-    }, [])
+        getProjectsRef.current = getProjects;
+    })
+
+    useEffect(() => {
+        if(props.user) {
+            getProjectsRef.current();
+        } else {
+            handleLogout();
+        }
+    }, [props.user])
     
 
     return(
@@ -107,10 +154,13 @@ function Main(props) {
                 <Route path='/projects/:id' render={(rp) => (
                     props.user ?
                     <Show 
-                        {...rp} 
+                        {...rp}
+                        user={props.user} 
                         projects={projects}
                         addNotes={addNotes}
+                        deleteNotes={deleteNotes}
                         getProjects={getProjects}
+
                     />
                     :
                     <Home />

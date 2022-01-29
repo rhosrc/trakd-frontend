@@ -4,7 +4,7 @@ function Index (props) {
 
 
 
-    console.log(props.projects);
+    // console.log(props.projects);
     return (
         <>
         <h1>YOUR PROJECTS!</h1>
@@ -16,14 +16,15 @@ function Index (props) {
                 const removeProject = function (event) {
                     event.preventDefault();
                     props.deleteProjects(project._id);
-                    props.getProjects();
                 } 
                 return (
                     <div key={project._id}>
+                        <div className="card">
                         <Link to={`/projects/${project._id}`}>
                         <p>{project.name}</p>
                         </Link>
                         <button onClick={removeProject}>Delete this Project</button>
+                        </div>
                     </div>
                 )
             })

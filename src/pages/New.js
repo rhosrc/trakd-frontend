@@ -26,13 +26,12 @@ function New (props) {
             due: '',
             status: 'processing',
         })
-        console.log(newProject);
+        // console.log(newProject);
         props.getProjects();
         props.history.push('/');       
     }
 
     function handleChange (event) {
-        console.log()
         setNewProject({
             ...newProject,
             [event.target.name]: event.target.value

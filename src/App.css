@@ -1,3 +1,13 @@
+body {
+    background-color: #f3f5d5;
+    font-family: Helvetica, sans-serif;
+}
 
+nav {
+    background-color: #f08c00;
+}
 
+.card {
+    background-color: #fd3a69;
+}
 

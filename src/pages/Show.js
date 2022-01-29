@@ -18,18 +18,16 @@ function Show (props) {
         setNewNote(event.target.value)
     }
 
-    const handleSubmitNote = function (event) {
+    const handleSubmitNote = async function (event) {
+        event.preventDefault();
         props.addNotes({content: newNote}, result._id);
-        setNewNote(''); 
+        // props.getProjects();
+        setNewNote('');
+         console.log('here i am!')
     }
 
 
-    const handleDeleteNote = async function (noteId) {
-        await fetch('http://localhost:3001/notes/' + noteId, {
-            method: 'DELETE'
-        })
-    props.getProjects();
-   }
+    
 
 
     
@@ -39,7 +37,7 @@ function Show (props) {
     return (
      <div>
         {
-            console.log(result.notes)
+            console.log(props)
         }
         <h1>Project Name: {result.name}</h1>
         <Link to={`/projects/${result._id}/edit`}>
@@ -51,7 +49,7 @@ function Show (props) {
                 return (
                     <div key={note._id}>
                         <p>{note.content}</p>
-                        <button onClick={() => handleDeleteNote(note._id)}>Remove note</button>
+                        <button onClick={() => props.deleteNotes(note._id)}>Remove note</button>
                     </div>
                 )
             })
