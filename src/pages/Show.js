@@ -1,15 +1,24 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 
  
 
 function Show (props) {
-    const [ newNote, setNewNote] = useState('')
-    
+
+
     const result = props.projects.find(project => {
         return project._id === props.match.params.id;
     })
+    
+    const [ newNote, setNewNote] = useState('')
+
+    // const [ notes, setNotes ] = useState([])
+    
+    // useEffect(() => {
+    //     props.addNotes({content: newNote}, result._id)
+    // }, []);
+    
 
     // console.log(result);
     // console.log(newNote);
@@ -18,26 +27,25 @@ function Show (props) {
         setNewNote(event.target.value)
     }
 
-    const handleSubmitNote = async function (event) {
+    const handleSubmitNote = function (event) {
+        
         event.preventDefault();
         props.addNotes({content: newNote}, result._id);
-        // props.getProjects();
+        // setProjectDeets({
+        //     ...result
+        // })
+        props.getProjects();
         setNewNote('');
-         console.log('here i am!')
+        // console.log('here i am!')
     }
 
-
-    
-
-
-    
 
 // console.log(result);
 
     return (
      <div>
         {
-            console.log(props)
+            console.log(result)
         }
         <h1>Project Name: {result.name}</h1>
         <Link to={`/projects/${result._id}/edit`}>

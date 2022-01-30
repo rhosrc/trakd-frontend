@@ -81,7 +81,7 @@ function Main(props) {
            },
            body: JSON.stringify(note)
        })
-   getProjects();
+        getProjects();
     }
 
     const deleteNotes = async function (noteId) {
@@ -93,7 +93,7 @@ function Main(props) {
                 'Authorization': 'Bearer ' + token
             }
         })
-    getProjects();
+        getProjects();
    }
 
     const handleLogout = function () {
