@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-
+import './Show.css'
 
  
 
@@ -107,40 +107,39 @@ const loading = () => <h1>Grabbing profile...</h1>
 
 const loaded = () => {
     return (
-     <div className="project">
-        <div className="flex-div"><h1>Project Name: {project.name}</h1>
-        <Link to={`/projects/${project._id}/edit`}>
-        <p>Edit this project</p>
-        </Link>
+        <div className="project">
+            <div className="flex-div">
+                <h1>{project.name}</h1>
+                <Link to={`/projects/${project._id}/edit`}>
+                    <p>Edit this project!</p>
+                </Link>
+                <img className="show-photo" alt="concept" src={project.photos}></img>
+            </div>
+            <div className="flex-div">
+                <h1>DUE: {new Date(project.due).toLocaleDateString('en-US')}</h1>
+                <p>Requested by: {project.requestor} </p>
+                <p>Charging ${project.charge}</p>
+                <p>Paid for? {project.paid}</p>
+                <p>{project.qty} commissioned</p>
+                <form onSubmit={handleSubmitNote}>
+                    <label>Note<input type="text" value={newNote} onChange={handleChange}></input></label><br />
+                    <input type="submit" value="Add Note" />
+                </form>
+                <div className="notes-div">
+                {
+                    project.notes.map(function (note) {
+                        return (
+                            <div className="note" key={note._id}>
+                                <p>{note.content}</p>
+                                <button onClick={() => removeNote(note._id)}>Remove note</button>
+                            </div>
+                        )
+                    })
+                }
+                </div>
+            </div>  
         </div>
-        <div className="flex-div">
-            <h3>DUE: {project.due}</h3>
-            <p>Requested by: {project.requestor} </p>
-            <p>Charging ${project.charge}</p>
-            <p>Paid for? {project.paid}</p>
-            <p>{project.qty} commissioned</p>
-            <img alt="concept" src={project.photos}></img>
-        </div>
-        <div className="flex-div">
-        <form onSubmit={handleSubmitNote}>
-        <label>Note</label><input type="text" value={newNote} onChange={handleChange}></input>
-        <input type="submit" value="Add Note" />
-        </form>
-        </div>
-{
-        project.notes.map(function (note) {
-    return (
-        <div key={note._id}>
-            <p>{note.content}</p>
-            <button onClick={() => removeNote(note._id)}>Remove note</button>
-        </div>
-    )
-})
-}
-
-
-        
-     </div>   
+ 
     )
 }
 

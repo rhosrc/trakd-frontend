@@ -1,9 +1,26 @@
 .project {
     display: flex;
     flex-direction: row;
+    margin: 50px;
+    flex-wrap: wrap;
 }
 
-flex-div {
-    justify-content: space-between;
+.flex-div {
+    justify-content: space-around;
+    margin: 0 auto 150px;
     width: 500px;
 }
+
+.notes-div {
+    margin-top: 25px;
+    border: solid;
+    overflow: scroll;
+    height: 200px;
+}
+
+.show-photo {
+    max-width: 100%;
+    /* height: auto; */
+    /* float: left; */
+}
+

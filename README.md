@@ -1,70 +1,43 @@
-# Getting Started with Create React App
+# TrakIt
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React app for artist who need to keep track of their commissioned projects!
 
-## Available Scripts
+## Technologies Used
 
-In the project directory, you can run:
+-HTML 5 \
+-CSS3 \
+-JavaScript \
+-Bootstrap 5.1.3 \
+-Node.js, Express, Mongoose \
+-MongoDB \
 
-### `npm start`
+## Planning
+![Trello](https://i.imgur.com/oXl9gYM.jpg)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+![Wireframe 1](https://i.imgur.com/Ry7gHAo.jpg)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+![Wireframe 2](https://i.imgur.com/RF3ohmj.jpg)
 
-### `npm test`
+## Screenshots
+![Home](https://i.imgur.com/gq7vac3.jpg)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![Dashboard](https://i.imgur.com/7wG9c7K.jpg)
 
-### `npm run build`
+![Project](https://i.imgur.com/OykHrl0.jpg)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Getting Started/User Stories
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Welcome to TrakIt! Click the link to get started. (https://trakit.netlify.app/)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+To begin, login with your Google Credentials. You will then be able to add your first project by clicking the link! Once you've fill out the form and add your details, you will be able to change them later by visiting your project page and selecting "Edit this project." 
 
-### `npm run eject`
+Your dashboard displays a summary of your projects' key details.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+You can also add notes to your project!
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Stretch Goals
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+-I would like to revise the CSS and make it more mobile-friendly. \ 
+-I'd like to create a gallery for multiple concept images. \
+-Styling ternaries to display details more easily. \
+-Timestamps for notes display/rearranging. \

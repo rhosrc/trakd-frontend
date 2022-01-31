@@ -27,11 +27,12 @@ function Index (props) {
                         </Link>
                         <p className="requestor">For {project.requestor}</p>
                         <div className="image-box" >
-                        <Link to={`/projects/${project._id}`}>
-                            <img className="photo" alt="concept" src={project.photos} />
+                            <Link to={`/projects/${project._id}`}>
+                                <img className="photo" alt="concept" src={project.photos} />
                             </Link>
                         </div>
-                        <p>Due on {new Date(project.due).toISOString().substring(0, 10)}</p>
+                        <p className="date">Due on {new Date(project.due).toLocaleDateString('en-US')}</p>
+                        <p className="status">{project.status}</p>
                         <button onClick={removeProject}>Delete this Project</button>
                         </div>
                   
