@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 function Show (props) {
     
-    const URL = 'http://localhost:3001/projects/';
+    const URL = 'https://trakit.netlify.app/projects/';
     const id = props.match.params.id;
 
     
@@ -61,7 +61,7 @@ const postNote = async function (note, id) {
 const removeNote = async function (noteId) {
     if(!props.user) return;
     const token = await props.user.getIdToken();
-    await fetch('http://localhost:3001/notes/' + noteId, {
+    await fetch('https://trakit.netlify.app/notes/' + noteId, {
         method: 'DELETE',
         headers: {
             'Authorization': 'Bearer ' + token
