@@ -14,7 +14,7 @@ function Show (props) {
     const [ newNote, setNewNote] = useState('')
 
     const [ project, setProject ] = useState(null)
-    getProjectRef = useRef();
+    const getProjectRef = useRef();
 
     const handleChange = function (event) {
         setNewNote(event.target.value)
@@ -81,7 +81,7 @@ useEffect(() => {
 
   useEffect(() => {
     if (props.user) {
-        getProjectRef.current;
+        getProjectRef.current();
     } else {
       handleLogout();
     }
@@ -118,7 +118,7 @@ const loaded = () => {
             <p>Requested by: {project.requestor} </p>
             <p>Paid for? {project.paid}</p>
             <p>{project.qty} commissioned</p>
-            <img alt="concept-image" src={project.photos}></img>
+            <img alt="concept" src={project.photos}></img>
         </div>
         <div className="flex-div">
         <form onSubmit={handleSubmitNote}>

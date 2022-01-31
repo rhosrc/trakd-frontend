@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import './Form.css'
 
 function Edit (props) {
@@ -9,7 +9,7 @@ function Edit (props) {
 
     const [ editForm, setEditForm ] = useState(null);
 
-    getProjectRef = useRef();
+    const getProjectRef = useRef();
 
     const handleChange = function (event) {
         setEditForm({
@@ -48,7 +48,7 @@ function Edit (props) {
 
       useEffect(() => {
         if (props.user) {
-            getProjectRef.current;
+            getProjectRef.current();
         } else {
           handleLogout();
         }
