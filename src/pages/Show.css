@@ -5,6 +5,10 @@
     flex-wrap: wrap;
 }
 
+h3 {
+    margin-bottom: 50px;
+}
+
 .flex-div {
     justify-content: space-around;
     margin: 0 auto 150px;

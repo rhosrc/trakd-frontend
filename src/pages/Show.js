@@ -56,6 +56,7 @@ const postNote = async function (note, id) {
     })
     const data = await response.json();
     setNewNote(data);
+    
 }
 
 const removeNote = async function (noteId) {
@@ -111,7 +112,7 @@ const loaded = () => {
             <div className="flex-div">
                 <h1>{project.name}</h1>
                 <Link to={`/projects/${project._id}/edit`}>
-                    <p>Edit this project!</p>
+                    <h3>Edit this project!</h3>
                 </Link>
                 <img className="show-photo" alt="concept" src={project.photos}></img>
             </div>
