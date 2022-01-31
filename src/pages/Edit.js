@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import './Form.css'
 
 function Edit (props) {
-    const URL = 'http://localhost:3001/projects/';
+    const URL = 'https://trakd-backend.herokuapp.com/projects/';
     const id = props.match.params.id;
     const projects = props.projects;
     const result = projects.find((project) => project._id === id);

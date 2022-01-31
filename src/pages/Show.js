@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 function Show (props) {
     
-    const URL = 'https://trakit.netlify.app/projects/';
+    const URL = 'https://trakd-backend.herokuapp.com/projects/';
     const id = props.match.params.id;
 
     
@@ -61,7 +61,7 @@ const postNote = async function (note, id) {
 const removeNote = async function (noteId) {
     if(!props.user) return;
     const token = await props.user.getIdToken();
-    await fetch('https://trakit.netlify.app/notes/' + noteId, {
+    await fetch('https://trakd-backend.herokuapp.com/notes/' + noteId, {
         method: 'DELETE',
         headers: {
             'Authorization': 'Bearer ' + token
@@ -116,6 +116,7 @@ const loaded = () => {
         <div className="flex-div">
             <h3>DUE: {project.due}</h3>
             <p>Requested by: {project.requestor} </p>
+            <p>Charging ${project.charge}</p>
             <p>Paid for? {project.paid}</p>
             <p>{project.qty} commissioned</p>
             <img alt="concept" src={project.photos}></img>
