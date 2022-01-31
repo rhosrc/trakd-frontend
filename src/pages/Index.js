@@ -28,7 +28,7 @@ function Index (props) {
                         <p className="requestor">For {project.requestor}</p>
                         <div className="image-box" >
                         <Link to={`/projects/${project._id}`}>
-                            <img className="photo" src={project.photos} />
+                            <img className="photo" alt="concept-image" src={project.photos} />
                             </Link>
                         </div>
                         <p>Due on {new Date(project.due).toISOString().substring(0, 10)}</p>

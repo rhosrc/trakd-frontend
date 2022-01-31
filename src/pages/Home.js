@@ -1,5 +1,5 @@
 import './Home.css'
-import {login, logout } from '../services/firebase';
+import {login } from '../services/firebase';
 
 function Home (props) {
     return (
@@ -10,7 +10,7 @@ function Home (props) {
                 <button onClick={login}>Login with Google</button>
             </div>
             <div className="home-image">
-                <img className="splash" src="https://cdn4.vectorstock.com/i/1000x1000/48/58/artist-and-designer-desk-vector-8964858.jpg"/>
+                <img className="splash" alt="splash-image" src="https://cdn4.vectorstock.com/i/1000x1000/48/58/artist-and-designer-desk-vector-8964858.jpg"/>
             </div>
         </div>
     )

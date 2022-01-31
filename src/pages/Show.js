@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 
 
@@ -14,6 +14,7 @@ function Show (props) {
     const [ newNote, setNewNote] = useState('')
 
     const [ project, setProject ] = useState(null)
+    getProjectRef = useRef();
 
     const handleChange = function (event) {
         setNewNote(event.target.value)
@@ -74,9 +75,13 @@ async function handleLogout () {
     setProject([]);
   };
 
+useEffect(() => {
+    getProjectRef.current = findProject;
+})
+
   useEffect(() => {
     if (props.user) {
-      findProject();
+        getProjectRef.current;
     } else {
       handleLogout();
     }
@@ -113,7 +118,7 @@ const loaded = () => {
             <p>Requested by: {project.requestor} </p>
             <p>Paid for? {project.paid}</p>
             <p>{project.qty} commissioned</p>
-            <img src={project.photos}></img>
+            <img alt="concept-image" src={project.photos}></img>
         </div>
         <div className="flex-div">
         <form onSubmit={handleSubmitNote}>

@@ -9,6 +9,8 @@ function Edit (props) {
 
     const [ editForm, setEditForm ] = useState(null);
 
+    getProjectRef = useRef();
+
     const handleChange = function (event) {
         setEditForm({
             ...editForm,
@@ -36,14 +38,17 @@ function Edit (props) {
       
     }
 
-
     async function handleLogout () {
         setEditForm('');
       };
     
       useEffect(() => {
+        getProjectRef.current = findProject;
+    })
+
+      useEffect(() => {
         if (props.user) {
-          findProject();
+            getProjectRef.current;
         } else {
           handleLogout();
         }
