@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import './Form.css'
 
 function New (props) {
     const [newProject, setNewProject] = useState({
@@ -9,6 +10,7 @@ function New (props) {
         paid: 'no',
         due: '',
         status: 'processing',
+        photos:''
     })
     
 
@@ -25,8 +27,9 @@ function New (props) {
             paid: 'yes',
             due: '',
             status: 'processing',
+            photos: ''
         })
-        // console.log(newProject);
+        console.log(newProject);
         props.getProjects();
         props.history.push('/');       
     }
@@ -41,9 +44,9 @@ function New (props) {
 
     
     return (
-        <div>
+        <div >
         <h1>ADD A PROJECT!</h1>
-        <form encType="multipart/form-data" onSubmit={handleSubmit}>
+        <form className="form" onSubmit={handleSubmit}>
             <label>
                 What's your project called?
                 <input type="text" value={newProject.name} name="name" placeholder="Project Name" onChange={handleChange} /><br />
@@ -58,11 +61,11 @@ function New (props) {
             </label>
             <label>
                 Quantity: 
-                <input type="text" value={newProject.qty} name="qty" placeholder="quantity" onChange={handleChange}/><br /> 
+                <input type="text" value={newProject.qty} name="qty" placeholder="Quantity" onChange={handleChange}/><br /> 
             </label>
             <label>
                 Charge: 
-                <input type="text" value={newProject.charge} name="charge" placeholder="Quantity" onChange={handleChange} /><br />
+                <input type="text" value={newProject.charge} name="charge" placeholder="Total Charge" onChange={handleChange} /><br />
             </label>
             <label>
                 Project Status: 
@@ -71,18 +74,18 @@ function New (props) {
                     <option value="in progress">In Progress</option>
                     <option value="completed">Completed</option>
                 </select>
-            </label><br />
+            </label>
             <label>
                 Is it fully paid for?
                 <select value={newProject.paid} onChange={handleChange} name="paid">
                 <option value="yes">Yes</option>
                 <option value="no">No</option>
             </select>
-            </label><br />
-            <label>
-                Upload concept images here!
-                <input type="file" name="conceptImage" /><br /> 
             </label>
+            <label>
+                Concept image URL: 
+                <input type="text" value={newProject.photos} name="photos" placeholder="Image URL" onChange={handleChange}/><br /> 
+            </label><br /> 
             <input type="submit" value="Create Project" />
         </form>
         </div>

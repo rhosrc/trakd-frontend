@@ -1,5 +1,6 @@
 import {login, logout } from '../services/firebase';
 import { Link } from 'react-router-dom';
+import './Header.css'
 
 function Header(props) {
     return (

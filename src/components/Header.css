@@ -1,0 +1,24 @@
+
+
+nav {
+    background-color: #f08c00;
+    /* position: absolute; */
+    /* top: 0; */
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    padding: .5rem;;
+    font-size: 1rem;
+    padding: 0 50px;
+}
+
+nav a {
+    font-size: 1.5rem;
+    text-decoration: none;
+}
+
+a:visited {
+    color: black;
+}
+

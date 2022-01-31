@@ -1,11 +1,13 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import './Form.css'
 
 function Edit (props) {
+    const URL = 'http://localhost:3001/projects/';
     const id = props.match.params.id;
     const projects = props.projects;
     const result = projects.find((project) => project._id === id);
 
-    const [ editForm, setEditForm ] = useState(result);
+    const [ editForm, setEditForm ] = useState(null);
 
     const handleChange = function (event) {
         setEditForm({
@@ -19,12 +21,42 @@ function Edit (props) {
         props.updateProjects(editForm, result._id)
         props.history.push('/')
     }
+    const findProject = async function () {
+        if(!props.user) return;
+        const token = await props.user.getIdToken();
+        const response = await fetch(URL + id, {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        });
+        const data = await response.json();
 
+        setEditForm(data);
+      
+    }
+
+
+    async function handleLogout () {
+        setEditForm('');
+      };
     
+      useEffect(() => {
+        if (props.user) {
+          findProject();
+        } else {
+          handleLogout();
+        }
+      }, [props.user]);
+    
+    
+    const loading = () => <h1>Grabbing profile...</h1>
+    
+    const loaded = () => {
     return (
         <div>
             <h1>Edit Page</h1>
-            <form encType="multipart/form-data" onSubmit={handleSubmit}>
+            <form className="form" encType="multipart/form-data" onSubmit={handleSubmit}>
             <label>
                 What's your project called?
                 <input type="text" value={editForm.name} name="name" placeholder="Project Name" onChange={handleChange} /><br />
@@ -52,23 +84,24 @@ function Edit (props) {
                     <option value="in progress">In Progress</option>
                     <option value="completed">Completed</option>
                 </select>
-            </label><br />
+            </label>
             <label>
                 Is it fully paid for?
                 <select value={editForm.paid} onChange={handleChange} name="paid">
                 <option value="yes">Yes</option>
                 <option value="no">No</option>
             </select>
-            </label><br />
-            <label>
-                Upload concept images here!
-                <input type="file" valuename="coverImage" /><br /> 
             </label>
+            <label>
+            Change image URL: 
+                <input type="text" value={editForm.photos} name="photos" placeholder="Image URL" onChange={handleChange}/><br /> 
+            </label><br />
             <input type="submit" value="Update Project" />
         </form>
         </div>
     )
-
+    }
+    return editForm ? loaded() : loading();
 }
 
 export default Edit;

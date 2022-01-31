@@ -1,0 +1,59 @@
+.heading {
+    font-size: 2.5rem;
+}
+
+.add {
+    font-size: 1.5rem;
+    color: blue;
+    font-weight: bold;
+}
+
+.projects {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 200px;
+}
+
+.dashboard {
+    margin: 50px;
+}
+
+.card {
+    background-color: #fd3a69;
+    width: 400px;
+    height: 500px;
+    
+    justify-content: center;
+    margin-top: 50px;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.title {
+    font-size: 2rem;
+}
+
+.requestor {
+    font-size: 1.5rem;
+    color: black;
+}
+
+.image-box {
+    width: 350px;
+    height: 250px;
+    margin: 0 auto;
+    background-color: green;
+}
+
+.photo {
+    max-width: 100%;
+    max-height: 100%;
+    /* object-fit: cover; */
+}

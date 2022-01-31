@@ -1,0 +1,9 @@
+.project {
+    display: flex;
+    flex-direction: row;
+}
+
+flex-div {
+    justify-content: space-between;
+    width: 500px;
+}

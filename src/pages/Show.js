@@ -1,73 +1,147 @@
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 
  
 
 function Show (props) {
+    
+    const URL = 'http://localhost:3001/projects/';
+    const id = props.match.params.id;
 
-
-    const result = props.projects.find(project => {
-        return project._id === props.match.params.id;
-    })
+    
     
     const [ newNote, setNewNote] = useState('')
 
-    // const [ notes, setNotes ] = useState([])
-    
-    // useEffect(() => {
-    //     props.addNotes({content: newNote}, result._id)
-    // }, []);
-    
-
-    // console.log(result);
-    // console.log(newNote);
+    const [ project, setProject ] = useState(null)
 
     const handleChange = function (event) {
         setNewNote(event.target.value)
     }
 
     const handleSubmitNote = function (event) {
-        
-        event.preventDefault();
-        props.addNotes({content: newNote}, result._id);
-        // setProjectDeets({
-        //     ...result
-        // })
-        props.getProjects();
+        // event.preventDefault();
+        postNote({content: newNote}, project._id);
         setNewNote('');
-        // console.log('here i am!')
     }
 
 
-// console.log(result);
-
-    return (
-     <div>
-        {
-            console.log(result)
+    
+const findProject = async function () {
+    if(!props.user) return;
+    const token = await props.user.getIdToken();
+    const response = await fetch(URL + id, {
+        method: 'GET',
+        headers: {
+            'Authorization': 'Bearer ' + token
         }
-        <h1>Project Name: {result.name}</h1>
-        <Link to={`/projects/${result._id}/edit`}>
+    });
+    const data = await response.json();
+
+    setProject(data);
+
+}
+
+const postNote = async function (note, id) {
+    if(!props.user) return;
+    const token = await props.user.getIdToken();
+    const response = await fetch(URL + id + '/notes', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'Application/json',
+            'Authorization': 'Bearer ' + token
+        },
+        body: JSON.stringify(note)
+    })
+    const data = await response.json();
+    setNewNote(data);
+}
+
+const removeNote = async function (noteId) {
+    if(!props.user) return;
+    const token = await props.user.getIdToken();
+    await fetch('http://localhost:3001/notes/' + noteId, {
+        method: 'DELETE',
+        headers: {
+            'Authorization': 'Bearer ' + token
+        }
+    })
+    setNewNote('');
+    findProject();
+}
+
+async function handleLogout () {
+    setProject([]);
+  };
+
+  useEffect(() => {
+    if (props.user) {
+      findProject();
+    } else {
+      handleLogout();
+    }
+  }, [props.user]);
+
+//   useEffect(() => {
+//     if (props.user) {
+//     } else {
+//       handleLogout();
+//     }
+//   }, [props.user]);
+
+//   useEffect(() => {
+//     if (props.user) {
+//     } else {
+//       handleLogout();
+//     }
+//   }, [props.user]);
+
+// console.log(props)
+
+const loading = () => <h1>Grabbing profile...</h1>
+
+const loaded = () => {
+    return (
+     <div className="project">
+        <div className="flex-div"><h1>Project Name: {project.name}</h1>
+        <Link to={`/projects/${project._id}/edit`}>
         <p>Edit this project</p>
         </Link>
-        {
-            
-            result.notes.map(function (note) {
-                return (
-                    <div key={note._id}>
-                        <p>{note.content}</p>
-                        <button onClick={() => props.deleteNotes(note._id)}>Remove note</button>
-                    </div>
-                )
-            })
-        }
+        </div>
+        <div className="flex-div">
+            <h3>DUE: {project.due}</h3>
+            <p>Requested by: {project.requestor} </p>
+            <p>Paid for? {project.paid}</p>
+            <p>{project.qty} commissioned</p>
+            <img src={project.photos}></img>
+        </div>
+        <div className="flex-div">
         <form onSubmit={handleSubmitNote}>
         <label>Note</label><input type="text" value={newNote} onChange={handleChange}></input>
         <input type="submit" value="Add Note" />
         </form>
+        </div>
+{
+        project.notes.map(function (note) {
+    return (
+        <div key={note._id}>
+            <p>{note.content}</p>
+            <button onClick={() => removeNote(note._id)}>Remove note</button>
+        </div>
+    )
+})
+}
+
+
+        
      </div>   
     )
 }
+
+return project ? loaded() : loading();
+
+}
+
+
 
 export default Show;
