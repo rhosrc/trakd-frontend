@@ -1,16 +1,31 @@
 
 
 nav {
-    background-color: #f08c00;
-    /* position: absolute; */
-    /* top: 0; */
+    background-color: #f19584;
     width: 100%;
-    display: flex;
-    justify-content: space-between;
     color: white;
-    padding: .5rem;;
     font-size: 1rem;
     padding: 0 50px;
+    height:135px;
+}
+
+nav h1 {
+    color: white;
+    font-size: 3rem;
+    float: left;
+    padding-top: 0;
+}
+
+nav img {
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+.google {
+    margin-top: 15px;
+    padding: 25px;
+    float: right;
+    margin-top: 17.5px;
 }
 
 nav a {
@@ -22,3 +37,15 @@ a:visited {
     color: black;
 }
 
+@media screen and (max-width: 420px) {
+
+    nav h1 {
+        font-size: 1.5rem;
+        margin-top: 35px;
+    }
+
+    .google {
+        padding-right: 0;
+        
+    }
+}

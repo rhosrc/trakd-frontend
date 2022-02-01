@@ -12,7 +12,7 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
     margin-bottom: 200px;
 }
 
@@ -21,14 +21,12 @@
 }
 
 .card {
-    background-color: #fd3a69;
+    background-color: #fea386;
     width: 400px;
     height: 575px;
     
     justify-content: center;
-    margin-top: 50px;
-    margin-left: 15px;
-    margin-right: 15px;
+    margin: 50px 15px 0;
 }
 
 a {
@@ -65,4 +63,17 @@ a {
 
 .date{
     font-size: 1.5rem;
+}
+
+
+@media screen and (max-width: 420px) {
+    
+.card {
+    margin: 50px 0 0;
+}
+
+.image-box {
+    width: 90%;
+}
+
 }

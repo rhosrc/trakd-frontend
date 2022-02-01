@@ -8,6 +8,7 @@ function Header(props) {
             <Link to ='/'>
                 <h1>TrackIt!</h1>
             </Link>
+            <div className="google">
             {
                 props.user ?
                 <>
@@ -22,8 +23,11 @@ function Header(props) {
                     <button onClick={logout}>Logout</button>
                 </>
                 :
-                <button onClick={login}>Login</button>
+                <button style={{
+                    marginTop: '15px'
+                }} onClick={login}>Login</button>
             }
+            </div>
         </nav> 
     )
 }

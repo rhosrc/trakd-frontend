@@ -107,31 +107,40 @@ useEffect(() => {
 const loading = () => <h1>Grabbing profile...</h1>
 
 const loaded = () => {
+   
     return (
         <div className="project">
             <div className="flex-div">
                 <h1>{project.name}</h1>
                 <Link to={`/projects/${project._id}/edit`}>
-                    <h3>Edit this project!</h3>
+                    <h3 className="edit">EDIT this project!</h3>
                 </Link>
+                <div className="photo-box">
                 <img className="show-photo" alt="concept" src={project.photos}></img>
+                </div>
             </div>
             <div className="flex-div">
                 <h1>DUE: {new Date(project.due).toLocaleDateString('en-US')}</h1>
-                <p>Requested by: {project.requestor} </p>
-                <p>Charging ${project.charge}</p>
-                <p>Paid for? {project.paid}</p>
-                <p>{project.qty} commissioned</p>
+                <div className="details">
+                    <p>Requested by: {project.requestor} </p>
+                    <p>{project.qty} commissioned</p>
+                    <p>You charged ${project.charge}</p>
+                    <p>Paid for? {project.paid}</p>
+                </div>
                 <form onSubmit={handleSubmitNote}>
-                    <label>Note<input type="text" value={newNote} onChange={handleChange}></input></label><br />
+                    <label className="note-form">Note<input type="text" className="input"  value={newNote} onChange={handleChange}></input></label><br />
+                    <div className="add">
                     <input type="submit" value="Add Note" />
+                    </div>
                 </form>
                 <div className="notes-div">
+                    <h2 className="notes-header">YOUR NOTES</h2>
                 {
                     project.notes.map(function (note) {
+        
                         return (
                             <div className="note" key={note._id}>
-                                <p>{note.content}</p>
+                                <p><span>{new Date(project.updatedAt).toLocaleDateString('en-US')}</span> {note.content}</p>
                                 <button onClick={() => removeNote(note._id)}>Remove note</button>
                             </div>
                         )
