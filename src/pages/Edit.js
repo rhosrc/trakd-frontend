@@ -21,7 +21,7 @@ function Edit (props) {
     const handleSubmit = function (event) {
         event.preventDefault();
         props.updateProjects(editForm, result._id)
-        props.history.push('/')
+        props.history.push(`/projects/${result._id}`)
     }
     const findProject = async function () {
         if(!props.user) return;
@@ -55,7 +55,7 @@ function Edit (props) {
       }, [props.user]);
     
     
-    const loading = () => <h1>Grabbing profile...</h1>
+    const loading = () => <h1>Grabbing project...</h1>
     
     const loaded = () => {
     return (

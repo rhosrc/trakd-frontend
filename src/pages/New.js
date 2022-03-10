@@ -10,10 +10,9 @@ function New (props) {
         paid: 'no',
         due: '',
         status: 'processing',
-        photos:''
+        photos:'',
+        upload:''
     })
-    
-
 
 
     function handleSubmit (event) {
@@ -27,12 +26,13 @@ function New (props) {
             paid: 'yes',
             due: '',
             status: 'processing',
-            photos: ''
+            photos: '',
+            upload: ''
         })
-        console.log(newProject);
         props.getProjects();
         props.history.push('/');       
     }
+
 
     function handleChange (event) {
         setNewProject({
@@ -85,7 +85,7 @@ function New (props) {
             <label>
                 Concept image URL: 
                 <input type="text" value={newProject.photos} name="photos" placeholder="Image URL" onChange={handleChange}/><br /> 
-            </label><br /> 
+            </label><br />
             <input type="submit" value="Create Project" />
         </form>
         </div>

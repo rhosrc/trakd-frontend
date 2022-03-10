@@ -9,10 +9,8 @@ import Edit from '../pages/Edit'
 function Main(props) {
     const [projects, setProjects] = useState([]);
     
-
     const getProjectsRef = useRef();
 
-    // const URL = 'http://localhost:3001/projects/';
     const URL = 'https://trakd-backend.herokuapp.com/projects/';
 
     const getProjects = async function () {
@@ -34,7 +32,6 @@ function Main(props) {
     const createProjects = async function (project) {
         if(!props.user) return;
         const token = await props.user.getIdToken();
-        // console.log(token);
         await fetch(URL, {
             method: 'POST',
             headers: {
@@ -71,32 +68,6 @@ function Main(props) {
         })
         getProjects();
    }
-
-//    const addNotes = async function (note, id) {
-//         if(!props.user) return;
-//         const token = await props.user.getIdToken();
-//         await fetch(URL + id + '/notes', {
-//            method: 'POST',
-//            headers: {
-//                'Content-Type': 'Application/json',
-//                'Authorization': 'Bearer ' + token
-//            },
-//            body: JSON.stringify(note)
-//        })
-//         getProjects();
-//     }
-
-//     const deleteNotes = async function (noteId) {
-//         if(!props.user) return;
-//         const token = await props.user.getIdToken();
-//         await fetch('http://localhost:3001/notes/' + noteId, {
-//             method: 'DELETE',
-//             headers: {
-//                 'Authorization': 'Bearer ' + token
-//             }
-//         })
-//         getProjects();
-//    }
 
     const handleLogout = function () {
         setProjects([]);
@@ -150,7 +121,7 @@ function Main(props) {
                         updateProjects={updateProjects}
                     />
                     :
-                    <Home />
+                    <Redirect to='/' />
                 )} />
 
                 <Route path='/projects/:id' render={(rp) => (
@@ -171,7 +142,7 @@ function Main(props) {
                     props.user ?
                     <Index {...props} user={props.user} setProjects={setProjects} projects={projects} getProjects={getProjects} deleteProjects={deleteProjects} / > 
                     :
-                    <Home />
+                    <Redirect to='/' />
                 )} />
             </Switch>
         </main>

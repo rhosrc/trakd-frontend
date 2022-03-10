@@ -16,7 +16,7 @@ h3 {
     justify-content: center;
     margin: 0 auto 50px;
     width: 500px;
-    height: 600px;
+    height: 650px;
 }
 
 .flex-div h1 {
@@ -43,7 +43,7 @@ label {
     /* margin-top: 25px; */
     border: solid;
     overflow: scroll;
-    height: 200px;
+    height: 250px;
     position: absolute;
     width: 100%;
     bottom: 0;

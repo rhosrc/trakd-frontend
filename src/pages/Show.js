@@ -9,11 +9,9 @@ function Show (props) {
     const URL = 'https://trakd-backend.herokuapp.com/projects/';
     const id = props.match.params.id;
 
-    
-    
-    const [ newNote, setNewNote] = useState('')
+    const [ newNote, setNewNote] = useState('');
 
-    const [ project, setProject ] = useState(null)
+    const [ project, setProject ] = useState(null);
     const getProjectRef = useRef();
 
     const handleChange = function (event) {
@@ -88,23 +86,8 @@ useEffect(() => {
     }
   }, [props.user]);
 
-//   useEffect(() => {
-//     if (props.user) {
-//     } else {
-//       handleLogout();
-//     }
-//   }, [props.user]);
 
-//   useEffect(() => {
-//     if (props.user) {
-//     } else {
-//       handleLogout();
-//     }
-//   }, [props.user]);
-
-// console.log(props)
-
-const loading = () => <h1>Grabbing profile...</h1>
+const loading = () => <h1>Grabbing project...</h1>
 
 const loaded = () => {
    
@@ -112,6 +95,9 @@ const loaded = () => {
         <div className="project">
             <div className="flex-div">
                 <h1>{project.name}</h1>
+                <Link to={'/projects/'}>
+                    <p className="edit">Back to Projects</p>
+                </Link>
                 <Link to={`/projects/${project._id}/edit`}>
                     <h3 className="edit">EDIT this project!</h3>
                 </Link>
