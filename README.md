@@ -37,7 +37,7 @@ You can also add notes to your project!
 
 ## Stretch Goals
 
--I would like to revise the CSS and make it more mobile-friendly. \ 
--I'd like to create a gallery for multiple concept images. \
--Styling ternaries to display details more easily. \
--Timestamps for notes display/rearranging. \
+- I would like to revise the CSS and make it more mobile-friendly.
+- I'd like to create a gallery for multiple concept images.
+- Styling ternaries to display details more easily.
+- Timestamps for notes display/rearranging.
