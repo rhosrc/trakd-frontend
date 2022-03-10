@@ -4,12 +4,12 @@ A React app for artist who need to keep track of their commissioned projects!
 
 ## Technologies Used
 
--HTML 5 \
--CSS3 \
--JavaScript \
--Bootstrap 5.1.3 \
--Node.js, Express, Mongoose \
--MongoDB \
+- HTML 5
+- CSS3
+- JavaScript
+- Bootstrap 5.1.3
+- Node.js, Express, Mongoose
+- MongoDB
 
 ## Planning
 ![Trello](https://i.imgur.com/oXl9gYM.jpg)
